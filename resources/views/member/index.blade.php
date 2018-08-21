@@ -141,7 +141,18 @@
                                       @endif
                                   </div>
                               </div>
+                              <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                                  <label for="h" class="col-md-4 control-label"></label>
 
+                                  <div class="col-md-6">
+                                  <div class="g-recaptcha" data-sitekey="{{env('RECAPTCHA_SITE_KEY',null)}}"></div>
+                                      @if ($errors->has('captch'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('address') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
                               <div class="form-group">
                                   <div class="col-md-6 col-md-offset-4">
                                       <button type="submit" class="btn btn-primary pull-right">
@@ -161,6 +172,7 @@
     <!-- Scripts -->
     <script src="{{asset('plugins/jQuery/jquery-2.2.3.min.js')}}" charset="utf-8"></script>
     <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}" charset="utf-8"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript">
       $(document).ready(function() {
         $('input[name=birthday]').datepicker({

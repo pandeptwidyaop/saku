@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Recaptcha;
 
 class MemberRegistration extends FormRequest
 {
@@ -30,7 +31,8 @@ class MemberRegistration extends FormRequest
             'handphone' => 'required|string|unique:profiles,handphone',
             'address' => 'required|string',
             'birthday' => 'required|string',
-            'sex' => 'required'
+            'sex' => 'required',
+            'g-recaptcha-response' => ['required', new Recaptcha]
         ];
     }
 }
